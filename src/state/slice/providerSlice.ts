@@ -1,10 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface providerType {
-    id: string;
-    name: string;
-    number: string;
-    passport: string;
+    id: string,
+    name: string,
+    number: string,
+    passport: string,
 }
 
 enum posibleStatus {
@@ -15,14 +15,19 @@ enum posibleStatus {
 }
 
 interface initialStateType {
-    providers: providerType[];
-    status: posibleStatus;
-    error: string | null;
+    providers: providerType[],
+    status: posibleStatus,
+    error: string | null,
 }
 
 
 const initialState: initialStateType = {
-    providers: [],
+    providers: [{
+        id: "1",
+    name: "juAN",
+    number: "1321684",
+    passport: "165465",
+    }],
     status: posibleStatus.IDLE,
     error: null,
 }

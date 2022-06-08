@@ -1,14 +1,25 @@
-import * as React from 'react';
+import React, {useState} from 'react';
+import {providerType} from '../../state/slice/providerSlice'
+
 
 interface IProviderProps {
 }
 
-const Provider: React.FunctionComponent<IProviderProps> = (props) => {
-  return (
-      <div>
-          
-      </div>
-  )
+type providerPropsType = {
+    props: providerType
+}
+
+const Provider: React.FunctionComponent<providerPropsType> = ({props}) => {
+
+    return (
+        <tbody>
+            <tr>
+                <td>{props.name}</td>
+                <td>{props.number}</td>
+                <td>{props.passport}</td>
+            </tr>
+        </tbody>
+    )
 };
 
 export default Provider;
