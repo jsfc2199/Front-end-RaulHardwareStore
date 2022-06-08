@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import ProviderForm from './ProviderForm';
 import Provider from './Provider'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store'
-import {providerType} from '../../state/slice/providerSlice'
-
+import {providerType, selectProvidersFetchError, selectProvidersState, selectProvidersStatus, posibleStatus, getAllProviders} from '../../state/slice/providerSlice'
+import { useAppDispatch} from '../../store'
 
 interface IProviderListProps {
 }
@@ -12,6 +12,18 @@ interface IProviderListProps {
 const ProviderList: React.FunctionComponent<IProviderListProps> = (props) => {
 
     const providers = useSelector((state:RootState) => state.providers.providers)
+
+    const error = useSelector(selectProvidersFetchError())
+    const status = useSelector(selectProvidersStatus())
+    const getProviders = useSelector(selectProvidersState())
+
+    const dispatch = useAppDispatch();
+
+    useEffect(()=>{
+        if(status===posibleStatus.IDLE){
+            dispatch(getAllProviders())
+        }
+    }, [dispatch])
 
     return (
         <div>
@@ -23,11 +35,10 @@ const ProviderList: React.FunctionComponent<IProviderListProps> = (props) => {
                         <td>Name</td>
                         <td>Phone Number</td>
                         <td>Passport Identification</td>
-
                     </tr>
                 </thead>
-
-                {providers.map((provider: providerType)=><Provider key={provider.id} props={provider}/>)}
+                
+                {getProviders.map((provider)=><Provider key={provider.id} props={provider}/>)}
             </table>
 
         </div>

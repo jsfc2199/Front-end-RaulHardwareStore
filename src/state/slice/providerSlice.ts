@@ -1,13 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from '../../store'
 
-interface providerType {
+
+const mainUrl = 'http://localhost:8080/v1/api/all-providers'
+
+export const getAllProviders = createAsyncThunk('getAllProviders',async () => {
+    const response = await fetch(mainUrl)
+    console.log(response);    
+    return (await response.json() as providerType[])
+})
+
+type providerType = {
     id: string,
     name: string,
     number: string,
     passport: string,
 }
 
-enum posibleStatus {
+export enum posibleStatus {
     IDLE = 'idle',
     COMPLETED = 'completed',
     FAILED = 'failed',
@@ -22,12 +32,7 @@ interface initialStateType {
 
 
 const initialState: initialStateType = {
-    providers: [{
-        id: "1",
-    name: "juAN",
-    number: "1321684",
-    passport: "165465",
-    }],
+    providers: [],
     status: posibleStatus.IDLE,
     error: null,
 }
@@ -37,9 +42,28 @@ const providerSlice = createSlice({
     initialState,
     reducers: {
 
+    },
+    extraReducers:(builder)=>{
+        builder.addCase(getAllProviders.pending, (state, action)=>{
+            state.status = posibleStatus.PENDING
+        })
+        builder.addCase(getAllProviders.fulfilled, (state, action)=>{
+            state.status = posibleStatus.COMPLETED
+            state.providers = action.payload
+        })
+        builder.addCase(getAllProviders.rejected, (state, action)=>{
+            state.status = posibleStatus.FAILED
+            state.error = "Something went wrong while fetching"
+            state.providers =[]
+        })
     }
 })
 
-export type {providerType}
-export type {initialStateType} 
+export type { providerType }
+export type { initialStateType }
 export default providerSlice.reducer
+
+//extra reducers
+export const selectProvidersState = () => (state: RootState) => state.providers.providers
+export const selectProvidersStatus = () => (state: RootState) => state.providers.status
+export const selectProvidersFetchError = () => (state: RootState) => state.providers.error
