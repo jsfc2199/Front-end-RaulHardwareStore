@@ -1,5 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { providerType } from "../state/slice/providerSlice";
+import { providerType } from "../../state/slice/providerSlice";
 
 const getProviderUrl = 'http://localhost:8080/v1/api/all-providers'
 

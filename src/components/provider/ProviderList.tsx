@@ -3,7 +3,7 @@ import ProviderForm from './ProviderForm';
 import Provider from './Provider'
 import { useSelector } from 'react-redux';
 import { selectProvidersFetchError, selectProvidersState, selectProvidersStatus, posibleStatus } from '../../state/slice/providerSlice'
-import { getAllProviders } from '../../actions/getAllProviders'
+import { getAllProviders } from '../../actions/provider/getAllProviders'
 import { useAppDispatch } from '../../store'
 
 interface IProviderListProps {

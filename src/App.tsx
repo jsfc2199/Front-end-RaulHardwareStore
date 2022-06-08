@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import './App.css'
 import ProviderList from './components/provider/ProviderList'
 
@@ -7,8 +8,20 @@ function App() {
 
   return (
     <div className="App">
-      Hola
-      <ProviderList/>
+      <h1>Raul's Hardware Store</h1>
+      <BrowserRouter>
+        <nav className='navMenu'>
+          <Link to='/providers'> Providers </Link>
+          <Link to='/products'> Products </Link>
+          <div className="dot"></div>
+        </nav>
+
+        <Routes>
+          <Route path="/providers" element={<ProviderList />} />
+        </Routes>
+      </BrowserRouter>
+
+
     </div>
   )
 }

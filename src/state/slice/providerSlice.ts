@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from '../../store'
-import { getAllProviders } from '../../actions/getAllProviders'
+import { getAllProviders } from '../../actions/provider/getAllProviders'
+import { createProvider } from '../../actions/provider/addProvider'
 
 
 /*const getProviderUrl = 'http://localhost:8080/v1/api/all-providers'
@@ -45,6 +46,7 @@ const providerSlice = createSlice({
 
     },
     extraReducers:(builder)=>{
+        //-----------GET BUILDERS
         builder.addCase(getAllProviders.pending, (state, action)=>{
             state.status = posibleStatus.PENDING
         })
@@ -56,6 +58,18 @@ const providerSlice = createSlice({
             state.status = posibleStatus.FAILED
             state.error = "Something went wrong while fetching"
             state.providers =[]
+        })
+        //-----------POST BUILDERS
+        builder.addCase(createProvider.pending, (state, action)=>{
+            state.status = posibleStatus.PENDING
+        })
+        builder.addCase(createProvider.fulfilled, (state, action)=>{
+            state.status = posibleStatus.COMPLETED
+            state.providers.push(action.payload)
+        })
+        builder.addCase(createProvider.rejected, (state, action)=>{
+            state.status = posibleStatus.FAILED
+            state.error = "Something went wrong while fetching"            
         })
     }
 })

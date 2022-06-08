@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { useAppDispatch } from '../../store'
+import { providerType } from "../../state/slice/providerSlice";
+import { nanoid } from '@reduxjs/toolkit';
+import { createProvider } from '../../actions/provider/addProvider';
 
 interface IProviderFormProps {
 }
@@ -7,10 +11,24 @@ const ProviderForm: React.FunctionComponent<IProviderFormProps> = (props) => {
     const [name, setName] = useState('')
     const [number, setNumber] = useState('')
     const [passport, setPassport] = useState('')
+
+    const dispatch = useAppDispatch()
     
+    const onAdd = async (e:React.FormEvent<HTMLFormElement>)=>{
+        e.preventDefault()
+        
+        if(name && number && passport){
+            const newProvider: providerType = {id: nanoid(), name, number, passport}
+            dispatch(createProvider(newProvider))
+            setName('')
+            setNumber('')
+            setPassport('')
+        }
+    }
+
     return (
         <div>
-            <form className='add-form' id="form">
+            <form className='add-form' id="form" onSubmit={(e) => onAdd(e)}>
 
                 <div className='form-control'>
                     <label>Provider Name</label>
