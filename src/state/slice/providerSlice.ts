@@ -1,14 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { RootState } from '../../store'
+import { getAllProviders } from '../../actions/getAllProviders'
 
 
-const mainUrl = 'http://localhost:8080/v1/api/all-providers'
+/*const getProviderUrl = 'http://localhost:8080/v1/api/all-providers'
 
 export const getAllProviders = createAsyncThunk('getAllProviders',async () => {
-    const response = await fetch(mainUrl)
+    const response = await fetch(getProviderUrl)
     console.log(response);    
     return (await response.json() as providerType[])
-})
+})*/
 
 type providerType = {
     id: string,
