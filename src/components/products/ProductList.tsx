@@ -37,6 +37,7 @@ const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
                         <td>Min Amount Units Available</td>
                         <td>Max Amount Units Available</td>  
                         <td>Provider's Name</td>  
+                        <td>Delete</td>  
                     </tr>
                 </thead>
 
