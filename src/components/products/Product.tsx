@@ -18,7 +18,7 @@ const Product: React.FunctionComponent<productPropsType> = ({props}) => {
         <td>{props.price}</td>
         <td>{props.minUnits}</td>
         <td>{props.maxUnits}</td>
-        <td>aqui hay que mapear la info del proveedor</td>
+        <td>{props.provider.name}</td>
     </tr>
 </tbody>
   )

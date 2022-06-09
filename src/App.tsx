@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import './App.css'
+import ProductList from './components/products/ProductList'
 import ProviderList from './components/provider/ProviderList'
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 
         <Routes>
           <Route path="/providers" element={<ProviderList />} />
+          <Route path="/products" element={<ProductList />} />
         </Routes>
       </BrowserRouter>
 
