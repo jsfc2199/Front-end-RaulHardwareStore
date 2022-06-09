@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { providerType } from '../../state/slice/providerSlice'
+import { productType } from '../../state/slice/productSlice'
 import { useSelector } from 'react-redux';
 import { selectProvidersState } from '../../state/slice/providerSlice'
+import { useAppDispatch } from '../../store'
+import { nanoid } from '@reduxjs/toolkit';
+import { addProduct } from '../../actions/products/addProduct'
 
 interface IProductFormProps {
 }
@@ -14,16 +18,29 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
   const [price, setPrice] = useState(0)
   const [minUnitsAvailable, setMinUnitsAvailable] = useState(0)
   const [maxUnitsAvailable, setMaxUnitsAvailable] = useState(0)
-  const [provider, setProvider] = useState('')
-
+  const [provider, setProvider] = useState<providerType>()
 
   const getProviders = useSelector(selectProvidersState())
 
-  // onSubmit={(e) => onAdd(e)}
+  const dispatch = useAppDispatch()
+
+  const onAdd = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    /*if(name && description && unitsAvailable && price && minUnitsAvailable && maxUnitsAvailable ){
+        const newProduct: productType = {id: nanoid(), minUnits: minUnitsAvailable, maxUnits: maxUnitsAvailable, productName: name, 
+          description: description, unitsAvailable: unitsAvailable, price: price, provider: provider}
+          console.log(newProduct)
+        dispatch(addProduct(newProduct))
+        setName('')
+    }*/
+
+    console.log(provider)
+  }
 
   return (
     <div>
-      <form className='add-form' id="form" >
+      <form className='add-form' id="form" onSubmit={(e) => onAdd(e)} >
 
         <div className='form-control'>
           <label>Product Name</label>
@@ -58,7 +75,9 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
         <div className='form-control'>
           <label className=''>Provider's List</label>
           <select className="optional-provider">
-            {getProviders.map((provider) => <option > {provider.name}</option>)}
+            {getProviders.map((provider) => <option key={provider.id} onSelect={() => setProvider(provider)}>
+              {provider.name}
+            </option>)}
           </select>
         </div>
         <input type='submit' value='Save Product' className='btn-save' />
