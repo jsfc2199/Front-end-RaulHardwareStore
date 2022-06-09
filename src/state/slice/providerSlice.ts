@@ -4,14 +4,6 @@ import { getAllProviders } from '../../actions/provider/getAllProviders'
 import { createProvider } from '../../actions/provider/addProvider'
 
 
-/*const getProviderUrl = 'http://localhost:8080/v1/api/all-providers'
-
-export const getAllProviders = createAsyncThunk('getAllProviders',async () => {
-    const response = await fetch(getProviderUrl)
-    console.log(response);    
-    return (await response.json() as providerType[])
-})*/
-
 type providerType = {
     id: string,
     name: string,
