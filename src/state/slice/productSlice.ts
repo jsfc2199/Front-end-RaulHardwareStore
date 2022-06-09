@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import {providerType} from './providerSlice'
 import {posibleStatus} from './providerSlice'
 import { getAllProducts } from '../../actions/products/getAllProducts'
+import { deleteProduct } from '../../actions/products/deleteProduct'
 import {RootState} from '../../store'
 
 type productType = {
@@ -47,6 +48,21 @@ const productSlice = createSlice({
             state.error = "Something went wrong while fetching"
             state.products =[]
         })
+        //DELETE BUILDS PRODUCT
+        builder.addCase(deleteProduct.pending, (state)=>{
+            state.status = posibleStatus.PENDING
+        })
+        builder.addCase(deleteProduct.fulfilled, (state, action)=>{
+            state.status = posibleStatus.COMPLETED
+            if(action.payload.deleted){
+                state.products = state.products.filter((product)=>product.id !== action.payload.productId)
+            }
+        })
+        builder.addCase(deleteProduct.rejected,(state)=>{
+            state.status = posibleStatus.FAILED
+            state.error = "Something went wrong while deleting the product"
+        })
+
     }
 })
 

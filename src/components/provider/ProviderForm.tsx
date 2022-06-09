@@ -45,7 +45,7 @@ const ProviderForm: React.FunctionComponent<IProviderFormProps> = (props) => {
                     <input onChange={(e) => setPassport(e.target.value)} type='text' placeholder='Passport number' value={passport} />
                 </div>
 
-                <input type='submit' value='Save Portfolio' className='btn-save' />
+                <input type='submit' value='Save Provider' className='btn-save' />
 
             </form>
         </div>

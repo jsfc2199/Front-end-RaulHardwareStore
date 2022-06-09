@@ -32,6 +32,7 @@ const ProviderList: React.FunctionComponent<IProviderListProps> = () => {
                         <td>Name</td>
                         <td>Phone Number</td>
                         <td>Passport Identification</td>
+                        <td>Edit</td>
                     </tr>
                 </thead>
 
@@ -43,3 +44,4 @@ const ProviderList: React.FunctionComponent<IProviderListProps> = () => {
 };
 
 export default ProviderList;
+

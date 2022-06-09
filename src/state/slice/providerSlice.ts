@@ -51,7 +51,7 @@ const providerSlice = createSlice({
             state.error = "Something went wrong while fetching"
             state.providers =[]
         })
-        //-----------POST BUILDERS
+        //-----------POST BUILDERS. Missing this to work in the frontend
         builder.addCase(createProvider.pending, (state, action)=>{
             state.status = posibleStatus.PENDING
         })

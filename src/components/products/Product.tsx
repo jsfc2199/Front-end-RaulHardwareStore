@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { productType } from '../../state/slice/productSlice'
+import { useAppDispatch } from '../../store'
+import { deleteProduct } from '../../actions/products/deleteProduct'
 
 interface IProductProps {
 }
@@ -9,6 +11,11 @@ type productPropsType = {
 }
 
 const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
+
+    const dispatch = useAppDispatch()
+    const onDelete = (props: productType) => {
+        dispatch(deleteProduct(props))
+    }
     return (
         <tbody>
             <tr>
@@ -19,7 +26,7 @@ const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
                 <td>{props.minUnits}</td>
                 <td>{props.maxUnits}</td>
                 <td>{props.provider.name}</td>
-                <td><button className="btn btn-delete">
+                <td><button className="btn btn-delete" onClick={()=>onDelete(props)}>
                     <span className="mdi mdi-delete mdi-24px"></span>
                     <span className="mdi mdi-delete-empty mdi-24px"></span>
                     <span>Delete</span>

@@ -17,6 +17,11 @@ const Provider: React.FunctionComponent<providerPropsType> = ({props}) => {
                 <td>{props.name}</td>
                 <td>{props.number}</td>
                 <td>{props.passport}</td>
+                <td><button className="btn btn-delete">
+                    <span className="mdi mdi-delete mdi-24px"></span>
+                    <span className="mdi mdi-delete-empty mdi-24px"></span>
+                    <span>Edit</span>
+                </button></td>
             </tr>
         </tbody>
     )

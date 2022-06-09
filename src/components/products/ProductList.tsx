@@ -5,12 +5,19 @@ import { useSelector } from 'react-redux';
 import { selectProductsFetchError, selectProductsStatus, selectProductsState } from '../../state/slice/productSlice'
 import { getAllProducts } from '../../actions/products/getAllProducts'
 import Product from './Product';
+import ProductForm from './ProductForm';
+import { providerType } from '../../state/slice/providerSlice'
 
 
 interface IProductListProps {
 }
 
-const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
+type productsFormPropsType = {
+    props: providerType
+  }
+  
+
+const ProductList: React.FunctionComponent<productsFormPropsType> = ({props}) => {
 
     const dispatch = useAppDispatch()
 
@@ -26,7 +33,7 @@ const ProductList: React.FunctionComponent<IProductListProps> = (props) => {
 
     return (
         <div>
-
+            <ProductForm/>
             <table className="justTable">
                 <thead>
                     <tr className="justTableHead">
