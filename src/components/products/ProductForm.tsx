@@ -18,7 +18,7 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
   const [price, setPrice] = useState(0)
   const [minUnitsAvailable, setMinUnitsAvailable] = useState(0)
   const [maxUnitsAvailable, setMaxUnitsAvailable] = useState(0)
-  const [provider, setProvider] = useState<providerType>()
+  const [provider, setProvider] = useState({} as providerType)
 
   const getProviders = useSelector(selectProvidersState())
 
@@ -74,8 +74,8 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
 
         <div className='form-control'>
           <label className=''>Provider's List</label>
-          <select className="optional-provider">
-            {getProviders.map((provider) => <option key={provider.id} onSelect={() => setProvider(provider)}>
+          <select className="optional-provider" >
+            {getProviders.map((provider) => <option key={provider.id} >
               {provider.name}
             </option>)}
           </select>

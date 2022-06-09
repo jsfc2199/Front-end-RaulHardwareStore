@@ -10,14 +10,9 @@ import { providerType } from '../../state/slice/providerSlice'
 
 
 interface IProductListProps {
-}
+}  
 
-type productsFormPropsType = {
-    props: providerType
-  }
-  
-
-const ProductList: React.FunctionComponent<productsFormPropsType> = ({props}) => {
+const ProductList: React.FunctionComponent<IProductListProps> = ({}) => {
 
     const dispatch = useAppDispatch()
 

@@ -2,11 +2,13 @@ import {configureStore} from '@reduxjs/toolkit'
 import providerReducer from './state/slice/providerSlice'
 import productReducer from './state/slice/productSlice'
 import { useDispatch } from 'react-redux'
+import loggedInReducer from './state/slice/loggedInSlice'
 
 const store = configureStore({
     reducer:{
         providers: providerReducer,
-        products: productReducer
+        products: productReducer,
+        logged: loggedInReducer
     }
 })
 
