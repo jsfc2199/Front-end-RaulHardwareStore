@@ -2,6 +2,7 @@ import * as React from 'react';
 import { productType } from '../../state/slice/productSlice'
 import { useAppDispatch } from '../../store'
 import { deleteProduct } from '../../actions/products/deleteProduct'
+import {Modal, ModalBody, ModalHeader, ModalFooter} from 'reactstrap'
 
 interface IProductProps {
 }
@@ -30,6 +31,11 @@ const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
                     <span className="mdi mdi-delete mdi-24px"></span>
                     <span className="mdi mdi-delete-empty mdi-24px"></span>
                     <span>Delete</span>
+                </button></td>
+                <td><button className="btn btn-delete" onClick={()=>onDelete(props)}>
+                    <span className="mdi mdi-delete mdi-24px"></span>
+                    <span className="mdi mdi-delete-empty mdi-24px"></span>
+                    <span>Edit</span>
                 </button></td>
             </tr>
         </tbody>

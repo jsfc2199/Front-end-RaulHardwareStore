@@ -42,8 +42,7 @@ const ProviderList: React.FunctionComponent<IProviderListProps> = () => {
                     <tr className="justTableHead">
                         <td>Name</td>
                         <td>Phone Number</td>
-                        <td>Passport Identification</td>
-                        <td>Edit</td>
+                        <td>Passport Identification</td>                        
                     </tr>
                 </thead>
 

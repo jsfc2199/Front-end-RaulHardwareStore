@@ -27,22 +27,33 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
   const onAdd = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    if(name && description && unitsAvailable && price && minUnitsAvailable && maxUnitsAvailable ){
-        const newProduct: productType = {id: nanoid(), minUnits: minUnitsAvailable, maxUnits: maxUnitsAvailable, productName: name, 
-          description: description, unitsAvailable: unitsAvailable, price: price, provider: provider}
-          //console.log(newProduct)
-        dispatch(addProduct(newProduct))
-        setName('')
-        setDescription('')
-        setUnitsAvailable(0)
-        setPrice(0)
-        setMinUnitsAvailable(0)
-        setMaxUnitsAvailable(0)
+    if (name && description && unitsAvailable && price && minUnitsAvailable && maxUnitsAvailable && (unitsAvailable < maxUnitsAvailable) &&
+      (unitsAvailable >= 0 && price > 0 && minUnitsAvailable >= 0 && maxUnitsAvailable > 0)) {
+      const newProduct: productType = {
+        id: nanoid(), minUnits: minUnitsAvailable, maxUnits: maxUnitsAvailable, productName: name,
+        description: description, unitsAvailable: unitsAvailable, price: price, provider: provider
+      }
+
+      dispatch(addProduct(newProduct))
+      setName('')
+      setDescription('')
+      setUnitsAvailable(0)
+      setPrice(0)
+      setMinUnitsAvailable(0)
+      setMaxUnitsAvailable(0)
+    } else {
+      alert('You can not have more units than de max units available or you are introducing negative numbers')
+      setName('')
+      setDescription('')
+      setUnitsAvailable(0)
+      setPrice(0)
+      setMinUnitsAvailable(0)
+      setMaxUnitsAvailable(0)
     }
   }
 
-  const selectProviderOnList = (e: React.ChangeEvent<HTMLSelectElement>)=>{
-    setProvider(getProviders.filter((someProvider)=>someProvider.id === e.target.value)[0])
+  const selectProviderOnList = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setProvider(getProviders.filter((someProvider) => someProvider.id === e.target.value)[0])
   }
 
   return (
@@ -81,14 +92,14 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
 
         <div className='form-control'>
           <label className=''>Provider's List</label>
-          <select className="optional-provider" onChange={(e)=>selectProviderOnList(e)}>
-            {getProviders.map((provider) => <option key={provider.id} value = {provider.id}>
+          <select className="optional-provider" onChange={(e) => selectProviderOnList(e)} >
+            <option disabled selected> Select a provider </option>
+            {getProviders.map((provider) => <option key={provider.id} value={provider.id}>
               {provider.name}
             </option>)}
           </select>
         </div>
         <input type='submit' value='Save Product' className='btn-save' />
-
       </form>
     </div>
   )
