@@ -18,10 +18,10 @@ function App() {
       <h1>Raul's Hardware Store</h1>
       <BrowserRouter>
         {user !== null ?
-          <nav className='navMenu'>
-            <Link to="/LogOut" >Log Out</Link>
+          <nav className='navMenu'>            
             <Link to='/providers'> Providers </Link>
             <Link to='/products'> Products </Link> 
+            <Link to="/LogOut" >Log Out</Link>
           </nav> : 
           
           <nav className='navMenu'>

@@ -27,15 +27,22 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
   const onAdd = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    /*if(name && description && unitsAvailable && price && minUnitsAvailable && maxUnitsAvailable ){
+    if(name && description && unitsAvailable && price && minUnitsAvailable && maxUnitsAvailable ){
         const newProduct: productType = {id: nanoid(), minUnits: minUnitsAvailable, maxUnits: maxUnitsAvailable, productName: name, 
           description: description, unitsAvailable: unitsAvailable, price: price, provider: provider}
-          console.log(newProduct)
+          //console.log(newProduct)
         dispatch(addProduct(newProduct))
         setName('')
-    }*/
+        setDescription('')
+        setUnitsAvailable(0)
+        setPrice(0)
+        setMinUnitsAvailable(0)
+        setMaxUnitsAvailable(0)
+    }
+  }
 
-    console.log(provider)
+  const selectProviderOnList = (e: React.ChangeEvent<HTMLSelectElement>)=>{
+    setProvider(getProviders.filter((someProvider)=>someProvider.id === e.target.value)[0])
   }
 
   return (
@@ -74,8 +81,8 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
 
         <div className='form-control'>
           <label className=''>Provider's List</label>
-          <select className="optional-provider" >
-            {getProviders.map((provider) => <option key={provider.id} >
+          <select className="optional-provider" onChange={(e)=>selectProviderOnList(e)}>
+            {getProviders.map((provider) => <option key={provider.id} value = {provider.id}>
               {provider.name}
             </option>)}
           </select>
