@@ -1,9 +1,9 @@
-import { useState } from 'react'
 import { useSelector } from "react-redux";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import './App.css'
 import LogIn from './components/login/LogIn';
 import GoogleLogIn from './components/login/LogInGoogle';
+import Logout from "./components/login/Logout";
 import SignIn from './components/login/SignIn';
 import ProductList from './components/products/ProductList'
 import ProviderList from './components/provider/ProviderList'
@@ -11,8 +11,6 @@ import { RootState } from './store';
 
 
 function App() {
-  const [count, setCount] = useState(0)
-
   const { user } = useSelector((state: RootState) => state.logged)
 
   return (
@@ -21,17 +19,15 @@ function App() {
       <BrowserRouter>
         {user !== null ?
           <nav className='navMenu'>
-            <Link to="/logInGoogle">Log in with google</Link>
-            <Link to="/logIn">Log in</Link>
-            <Link to="/SignIn">Sign in</Link>
+            <Link to="/LogOut" >Log Out</Link>
             <Link to='/providers'> Providers </Link>
-            <Link to='/products'> Products </Link>
-            
-          </nav> : <nav className='navMenu'>
+            <Link to='/products'> Products </Link> 
+          </nav> : 
+          
+          <nav className='navMenu'>
             <Link to="/logInGoogle">Log in with google</Link>
             <Link to="/logIn">Log in</Link>
-            <Link to="/SignIn">Sign in</Link>
-            
+            <Link to="/SignIn">Sign in</Link>            
           </nav>}
 
         <Routes>
@@ -40,6 +36,7 @@ function App() {
           <Route path="LogIn" element={<LogIn />} />
           <Route path="/providers" element={<ProviderList />} />
           <Route path="/products" element={<ProductList />} />
+          <Route path="/LogOut" element={<Logout />} />
         </Routes>
       </BrowserRouter>
 

@@ -19,8 +19,8 @@ const GoogleLogIn: React.FunctionComponent = () => {
 
                 dispatch(logInInReducer(user))
 
-                navigate('/welcome')
-                
+                navigate('/providers')
+
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -33,7 +33,7 @@ const GoogleLogIn: React.FunctionComponent = () => {
 
     return (
         <div>
-            <button className="btn btn-delete">Log in with Google</button>
+            <button className="btn btn-delete" onClick={signInWithGoogleButton}>Log in with Google</button>
         </div>
     )
 }

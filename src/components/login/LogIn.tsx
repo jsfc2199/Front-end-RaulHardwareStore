@@ -1,7 +1,9 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../firebaseConfig";
-
+import { useNavigate } from "react-router-dom";
+import { logInInReducer } from '../../state/slice/loggedInSlice'
+import { useDispatch } from "react-redux";
 import * as React from 'react';
 
 
@@ -9,6 +11,9 @@ const LogIn: React.FunctionComponent = () => {
 
     const [userName, setUserName] = useState('')
     const [password, setPassword] = useState('')
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const logInForm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
@@ -23,6 +28,8 @@ const LogIn: React.FunctionComponent = () => {
                     console.log(userCredential);
                     console.log('**** user ***');
                     console.log(user)
+                    dispatch(logInInReducer(user))
+                    navigate('/providers')
                 })
                 .catch((error) => {
                     const errorCode = error.code;
