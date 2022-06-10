@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import './App.css'
+import EditProduct from "./components/editProduct/editProduct";
 import LogIn from './components/login/LogIn';
 import GoogleLogIn from './components/login/LogInGoogle';
 import Logout from "./components/login/Logout";
@@ -37,6 +38,7 @@ function App() {
           <Route path="/providers" element={<ProviderList />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/LogOut" element={<Logout />} />
+          <Route path="/updateProduct" element={<EditProduct />} />
         </Routes>
       </BrowserRouter>
 

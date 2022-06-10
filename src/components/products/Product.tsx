@@ -2,7 +2,7 @@ import * as React from 'react';
 import { productType } from '../../state/slice/productSlice'
 import { useAppDispatch } from '../../store'
 import { deleteProduct } from '../../actions/products/deleteProduct'
-import {Modal, ModalBody, ModalHeader, ModalFooter} from 'reactstrap'
+import { useNavigate } from "react-router-dom";
 
 interface IProductProps {
 }
@@ -17,6 +17,13 @@ const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
     const onDelete = (props: productType) => {
         dispatch(deleteProduct(props))
     }
+
+
+    const navigate = useNavigate()
+    const updateProduct = (props: productType) => {
+        navigate('/updateProduct')
+    }
+
     return (
         <tbody>
             <tr>
@@ -32,7 +39,7 @@ const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
                     <span className="mdi mdi-delete-empty mdi-24px"></span>
                     <span>Delete</span>
                 </button></td>
-                <td><button className="btn btn-delete" onClick={()=>onDelete(props)}>
+                <td><button onClick = {()=>updateProduct(props)}className="btn btn-delete">
                     <span className="mdi mdi-delete mdi-24px"></span>
                     <span className="mdi mdi-delete-empty mdi-24px"></span>
                     <span>Edit</span>
