@@ -314,3 +314,21 @@ body {
   padding: 3px 7px;
   font-size: 17px;
 }
+
+
+.log-style{
+  font-size: 16px;
+  color: red;
+  box-shadow: 0 0 0 4px #ffcccc; 
+  background-color: #fff5f5;
+  margin-left: 42.5%;
+  width: 8em;
+  align-items: flex-end;
+  background: none;
+  border: 1px solid #bdbdbd;
+  height: 48px;
+  padding: 0 24px 0 16px;
+  letter-spacing: 0.25px;
+  border-radius: 24px;
+  cursor: pointer;
+}

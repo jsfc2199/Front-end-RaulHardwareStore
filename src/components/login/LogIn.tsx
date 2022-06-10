@@ -4,6 +4,9 @@ import { auth } from "../../firebaseConfig";
 import { useNavigate } from "react-router-dom";
 import { logInInReducer } from '../../state/slice/loggedInSlice'
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import {RootState} from '../../store'
 import * as React from 'react';
 
 
@@ -15,27 +18,27 @@ const LogIn: React.FunctionComponent = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    const {user} = useSelector((state:RootState) => state.logged)  
+
+    useEffect(()=>{
+        if(user!==null){
+            navigate("/providers")
+        }
+    },[])
+
     const logInForm = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
 
         if (userName && password) {
             signInWithEmailAndPassword(auth, userName, password)
                 .then((userCredential) => {
-
                     const user = userCredential.user;
-
-                    console.log('**** user credentials ****');
-                    console.log(userCredential);
-                    console.log('**** user ***');
-                    console.log(user)
                     dispatch(logInInReducer(user))
                     navigate('/providers')
                 })
                 .catch((error) => {
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.log('*** Log in error ***');
-                    console.log(errorMessage);
                 });
 
             setPassword('')
@@ -46,14 +49,17 @@ const LogIn: React.FunctionComponent = () => {
     return (
         <div>
             <h1>Log In</h1>
-            <form>
+            <form className='add-form'>
+                <div className='form-control'>
                 <label htmlFor="username">Username</label><br />
                 <input
                     onChange={(e) => setUserName(e.target.value)}
                     type="text"
                     name="username"
                     value={userName}
-                /><br />
+                /></div>
+                <br />
+                <div className='form-control'>
                 <label htmlFor="password">Password</label><br />
                 <input
                     onChange={(e) => setPassword(e.target.value)}
@@ -61,7 +67,8 @@ const LogIn: React.FunctionComponent = () => {
                     name="password"
                     value={password}
                 /><br />
-                <button onClick={(e) => logInForm(e)}>Log In</button><br />
+                </div>
+                <button className="log-style" onClick={(e) => logInForm(e)}>Log In</button><br />
             </form>
         </div>
     )

@@ -3,12 +3,24 @@ import { useNavigate } from "react-router-dom";
 import { auth } from '../../firebaseConfig'
 import { logInInReducer } from '../../state/slice/loggedInSlice'
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import {RootState} from '../../store'
 
 const providerGoogleAuth = new GoogleAuthProvider();
 
 const GoogleLogIn: React.FunctionComponent = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const {user} = useSelector((state:RootState) => state.logged)
+  
+
+    useEffect(()=>{
+        if(user!==null){
+            navigate("/providers")
+        }
+    },[])
 
     const signInWithGoogleButton = () => {
         signInWithPopup(auth, providerGoogleAuth)

@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { selectProvidersFetchError, selectProvidersState, selectProvidersStatus, posibleStatus } from '../../state/slice/providerSlice'
 import { getAllProviders } from '../../actions/provider/getAllProviders'
 import { useAppDispatch } from '../../store'
+import {RootState} from '../../store'
+import { useNavigate } from "react-router-dom";
 
 interface IProviderListProps {
 }
@@ -22,6 +24,15 @@ const ProviderList: React.FunctionComponent<IProviderListProps> = () => {
     const error = useSelector(selectProvidersFetchError())
     const status = useSelector(selectProvidersStatus())
     const getProviders = useSelector(selectProvidersState())
+
+    const {user} = useSelector((state:RootState) => state.logged)
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(user===null){
+            navigate("/logInGoogle")
+        }
+    },[])
 
     return (
         <div>

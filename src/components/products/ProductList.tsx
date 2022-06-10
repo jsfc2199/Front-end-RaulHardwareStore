@@ -7,7 +7,8 @@ import { getAllProducts } from '../../actions/products/getAllProducts'
 import Product from './Product';
 import ProductForm from './ProductForm';
 import { providerType } from '../../state/slice/providerSlice'
-
+import { useNavigate } from "react-router-dom";
+import {RootState} from '../../store'
 
 interface IProductListProps {
 }  
@@ -25,6 +26,15 @@ const ProductList: React.FunctionComponent<IProductListProps> = ({}) => {
     const error = useSelector(selectProductsFetchError())
     const status = useSelector(selectProductsStatus())
     const getProducts = useSelector(selectProductsState())
+
+    const {user} = useSelector((state:RootState) => state.logged)
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        if(user===null){
+            navigate("/logInGoogle")
+        }
+    },[])
 
     return (
         <div>
