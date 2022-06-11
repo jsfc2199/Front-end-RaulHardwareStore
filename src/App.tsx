@@ -26,7 +26,7 @@ function App() {
             <Link to='/providers'> Providers </Link>
             <Link to='/products'> Products </Link>
             <Link to='/receipts'> Receipts </Link>
-            <Link to='/bills'> Receipts </Link>
+            <Link to='/bills'> Bills </Link>
             <Link to="/LogOut" >Log Out</Link>
           </nav> :
 

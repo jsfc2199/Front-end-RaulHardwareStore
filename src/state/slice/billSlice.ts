@@ -11,7 +11,7 @@ type billType = {
     clientName: string,
     seller: number,
     date: string,
-    product: productType[],
+    productsBought: productType[],
     totalPaid: number,
 }
 

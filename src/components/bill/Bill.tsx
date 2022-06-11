@@ -15,9 +15,17 @@ const Bill: React.FunctionComponent<billPropsType> = ({ props }) => {
                 <td>{props.clientName}</td>
                 <td>{props.seller}</td>
                 <td>{props.date}</td>
-                <td><table>{props.product.map(product =>{
-                    return <td>{product.productName}</td>
-                })}</table></td>
+                <td><table>
+                    {props.productsBought.map((product) => {
+                        return (
+                            <tbody>
+                                <tr>
+                                    <td>{product.productName}</td>
+                                </tr>
+                            </tbody>
+                        )
+                    })}
+                </table> </td>
                 <td>{props.totalPaid}</td>
             </tr>
         </tbody>
