@@ -3,6 +3,7 @@ import { productType } from '../../state/slice/productSlice'
 import { useAppDispatch } from '../../store'
 import { deleteProduct } from '../../actions/products/deleteProduct'
 import { Link } from "react-router-dom";
+import { addToCart } from '../../state/slice/shoppingSlice';
 
 interface IProductProps {
 }
@@ -16,6 +17,10 @@ const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
     const dispatch = useAppDispatch()
     const onDelete = (props: productType) => {
         dispatch(deleteProduct(props))
+    }
+
+    const onAdd = (props: productType) => {
+        dispatch(addToCart(props))
     }
 
     return (
@@ -46,6 +51,10 @@ const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
                             Purchase
                         </Link>
                     </button>
+                </td>
+
+                <td>
+                    <button className="btn btn-delete" onClick={()=>onAdd(props)}>Add To Cart</button>
                 </td>
 
             </tr>

@@ -52,6 +52,7 @@ const ProductList: React.FunctionComponent<IProductListProps> = ({ }) => {
                         <td>Delete</td>
                         <td>Edit</td>
                         <td>Purchase</td>
+                        <td>Add To Cart</td>
                     </tr>
                 </thead>
 

@@ -27,7 +27,7 @@ const GoogleLogIn: React.FunctionComponent = () => {
             .then((result) => {
                 const credential: OAuthCredential | null = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential!.accessToken;
-                const user = result.user;
+                const user = result.user.displayName;
 
                 dispatch(logInInReducer(user))
 

@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import loggedInReducer from './state/slice/loggedInSlice'
 import receiptReducer from './state/slice/receiptSlice'
 import billReducer from './state/slice/billSlice'
+import shopping from './state/slice/shoppingSlice'
 
 const store = configureStore({
     reducer: {
@@ -12,7 +13,8 @@ const store = configureStore({
         products: productReducer,
         logged: loggedInReducer,
         receipts: receiptReducer,
-        bills: billReducer
+        bills: billReducer,
+        shoppingCart: shopping
     }
 })
 

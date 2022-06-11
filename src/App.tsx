@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import './App.css'
 import BillList from "./components/bill/BillList";
+import ShoppingCar from "./components/bill/ShoppingCart";
 import EditProduct from "./components/editProduct/EditProduct";
 import LogIn from './components/login/LogIn';
 import GoogleLogIn from './components/login/LogInGoogle';
@@ -27,7 +28,8 @@ function App() {
             <Link to='/products'> Products </Link>
             <Link to='/receipts'> Receipts </Link>
             <Link to='/bills'> Bills </Link>
-            <Link to="/LogOut" >Log Out</Link>
+            <Link to="/shoppingCart" >Shopping Cart</Link>
+            <Link to="/LogOut" >Log Out</Link>            
           </nav> :
 
           <nav className='navMenu'>
@@ -47,6 +49,7 @@ function App() {
           <Route path="/receipts" element={<ReceiptList />} />
           <Route path="/purchaseProduct" element={<PurchaseProduct />} />
           <Route path="/bills" element={<BillList/>}/>
+          <Route path="/shoppingCart" element={<ShoppingCar/>}/>
         </Routes>
       </BrowserRouter>
 
