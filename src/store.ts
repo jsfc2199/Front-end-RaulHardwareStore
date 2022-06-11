@@ -4,13 +4,15 @@ import productReducer from './state/slice/productSlice'
 import { useDispatch } from 'react-redux'
 import loggedInReducer from './state/slice/loggedInSlice'
 import receiptReducer from './state/slice/receiptSlice'
+import billReducer from './state/slice/billSlice'
 
 const store = configureStore({
     reducer: {
         providers: providerReducer,
         products: productReducer,
         logged: loggedInReducer,
-        receipts: receiptReducer
+        receipts: receiptReducer,
+        bills: billReducer
     }
 })
 

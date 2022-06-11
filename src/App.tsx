@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import './App.css'
+import BillList from "./components/bill/BillList";
 import EditProduct from "./components/editProduct/EditProduct";
 import LogIn from './components/login/LogIn';
 import GoogleLogIn from './components/login/LogInGoogle';
@@ -25,6 +26,7 @@ function App() {
             <Link to='/providers'> Providers </Link>
             <Link to='/products'> Products </Link>
             <Link to='/receipts'> Receipts </Link>
+            <Link to='/bills'> Receipts </Link>
             <Link to="/LogOut" >Log Out</Link>
           </nav> :
 
@@ -44,6 +46,7 @@ function App() {
           <Route path="/updateProduct" element={<EditProduct />} />
           <Route path="/receipts" element={<ReceiptList />} />
           <Route path="/purchaseProduct" element={<PurchaseProduct />} />
+          <Route path="/bills" element={<BillList/>}/>
         </Routes>
       </BrowserRouter>
 
