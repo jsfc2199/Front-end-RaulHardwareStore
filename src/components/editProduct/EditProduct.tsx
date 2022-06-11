@@ -58,7 +58,7 @@ const EditProduct: React.FunctionComponent = () => {
             navigate("/products")
 
         } else {
-            alert("invalid fields")
+            alert('You can not have more units than de max units available or you are introducing negative numbers')
         }
     }
 

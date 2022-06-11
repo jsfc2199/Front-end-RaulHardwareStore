@@ -2,7 +2,7 @@ import * as React from 'react';
 import { productType } from '../../state/slice/productSlice'
 import { useAppDispatch } from '../../store'
 import { deleteProduct } from '../../actions/products/deleteProduct'
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 interface IProductProps {
 }
@@ -34,7 +34,7 @@ const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
                     <span>Delete</span>
                 </button></td>
                 <td><button className="btn btn-delete">
-                    <Link to='/updateProduct' state={{ stateEdit: props.id }}>
+                    <Link to='/updateProduct' style={{textDecoration: 'none'}} state={{ stateEdit: props.id }}>
                         Edit
                     </Link>
                 </button></td>
