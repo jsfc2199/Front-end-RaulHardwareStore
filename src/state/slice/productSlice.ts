@@ -82,7 +82,9 @@ const productSlice = createSlice({
         })
         builder.addCase(updateProduct.fulfilled,(state,action)=>{
             state.status = posibleStatus.COMPLETED
-            state.products.push(action.payload)
+            let productUpdated = state.products.filter(product => product.id === action.payload.id)[0];
+            let positionProductUpdated = state.products.indexOf(productUpdated)
+            state.products[positionProductUpdated] = action.payload
         })
         builder.addCase(updateProduct.rejected, (state, action)=>{
             state.status = posibleStatus.FAILED

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { productType } from '../../state/slice/productSlice'
 import { useAppDispatch } from '../../store'
 import { deleteProduct } from '../../actions/products/deleteProduct'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface IProductProps {
 }
@@ -18,12 +18,6 @@ const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
         dispatch(deleteProduct(props))
     }
 
-
-    const navigate = useNavigate()
-    const updateProduct = (props: productType) => {
-        navigate('/updateProduct')
-    }
-
     return (
         <tbody>
             <tr>
@@ -34,15 +28,15 @@ const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
                 <td>{props.minUnits}</td>
                 <td>{props.maxUnits}</td>
                 <td>{props.provider.name}</td>
-                <td><button className="btn btn-delete" onClick={()=>onDelete(props)}>
+                <td><button className="btn btn-delete" onClick={() => onDelete(props)}>
                     <span className="mdi mdi-delete mdi-24px"></span>
                     <span className="mdi mdi-delete-empty mdi-24px"></span>
                     <span>Delete</span>
                 </button></td>
-                <td><button onClick = {()=>updateProduct(props)}className="btn btn-delete">
-                    <span className="mdi mdi-delete mdi-24px"></span>
-                    <span className="mdi mdi-delete-empty mdi-24px"></span>
-                    <span>Edit</span>
+                <td><button className="btn btn-delete">
+                    <Link to='/updateProduct' state={{ stateEdit: props.id }}>
+                        Edit
+                    </Link>
                 </button></td>
             </tr>
         </tbody>
