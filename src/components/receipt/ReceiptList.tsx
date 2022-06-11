@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectReceiptsFetchError, selectReceiptsStatus, selectReceiptsState } from '../../state/slice/receiptSlice'
 import { posibleStatus } from '../../state/slice/providerSlice'
 import { getAllReceipts } from '../../actions/receipt/getAllReceipts'
-import {RootState} from '../../store'
+import { RootState } from '../../store'
 import { useNavigate } from "react-router-dom";
 import Receipt from './Receipt'
 
@@ -26,18 +26,18 @@ const ReceiptList: React.FunctionComponent<IReceiptListProps> = (props) => {
     }, [dispatch])
 
 
-    const {user} = useSelector((state:RootState) => state.logged)
+    const { user } = useSelector((state: RootState) => state.logged)
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        if(user===null){
+    useEffect(() => {
+        if (user === null) {
             navigate("/logInGoogle")
         }
-    },[])
+    }, [])
 
     return (
         <div>
-            <h1 style={{textAlign: 'center'}}>Receipts History</h1>
+            <h1 style={{ textAlign: 'center' }}>Receipts History</h1>
             <table className="justTable">
                 <thead>
                     <tr className="justTableHead">

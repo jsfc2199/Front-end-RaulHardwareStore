@@ -10,26 +10,26 @@ const Logout = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const {user} = useSelector((state:RootState) => state.logged)
-    
+    const { user } = useSelector((state: RootState) => state.logged)
 
-    useEffect(()=>{
-        if(user===null){
+
+    useEffect(() => {
+        if (user === null) {
             navigate("/logInGoogle")
         }
-    },[])
+    }, [])
 
     const logOutApp = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault()
 
         dispatch(logOutInReducer())
-        
+
         navigate("/logInGoogle")
     }
 
     return (
         <div>
-            <button className="btn btn-delete" onClick={(e)=>logOutApp(e)}>Log Out</button>
+            <button className="btn btn-delete" onClick={(e) => logOutApp(e)}>Log Out</button>
         </div>
     )
 }

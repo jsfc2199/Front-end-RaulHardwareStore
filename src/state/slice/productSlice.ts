@@ -5,7 +5,7 @@ import { getAllProducts } from '../../actions/products/getAllProducts'
 import { deleteProduct } from '../../actions/products/deleteProduct'
 import { addProduct } from '../../actions/products/addProduct'
 import { RootState } from '../../store'
-import {updateProduct } from '../../actions/products/updateProduct'
+import { updateProduct } from '../../actions/products/updateProduct'
 
 type productType = {
     id: string,
@@ -68,11 +68,11 @@ const productSlice = createSlice({
         builder.addCase(addProduct.pending, (state, action) => {
             state.status = posibleStatus.PENDING
         })
-        builder.addCase(addProduct.fulfilled,(state,action)=>{
+        builder.addCase(addProduct.fulfilled, (state, action) => {
             state.status = posibleStatus.COMPLETED
             state.products.push(action.payload)
         })
-        builder.addCase(addProduct.rejected, (state, action)=>{
+        builder.addCase(addProduct.rejected, (state, action) => {
             state.status = posibleStatus.FAILED
             state.error = "Something went wrong while creatin a product"
         })
@@ -80,13 +80,13 @@ const productSlice = createSlice({
         builder.addCase(updateProduct.pending, (state, action) => {
             state.status = posibleStatus.PENDING
         })
-        builder.addCase(updateProduct.fulfilled,(state,action)=>{
+        builder.addCase(updateProduct.fulfilled, (state, action) => {
             state.status = posibleStatus.COMPLETED
             let productUpdated = state.products.filter(product => product.id === action.payload.id)[0];
             let positionProductUpdated = state.products.indexOf(productUpdated)
             state.products[positionProductUpdated] = action.payload
         })
-        builder.addCase(updateProduct.rejected, (state, action)=>{
+        builder.addCase(updateProduct.rejected, (state, action) => {
             state.status = posibleStatus.FAILED
             state.error = "Something went wrong while creatin a product"
         })

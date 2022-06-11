@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from '../../store'
-import {providerType} from '../../state/slice/providerSlice'
+import { providerType } from '../../state/slice/providerSlice'
 import { posibleStatus } from './providerSlice'
-import {getAllReceipts} from '../../actions/receipt/getAllReceipts'
+import { getAllReceipts } from '../../actions/receipt/getAllReceipts'
+import { addReceipt } from '../../actions/receipt/addReceipt'
 
 type receiptType = {
     id: string,
@@ -29,11 +30,11 @@ const initialState: initialStateReceiptType = {
 const receiptSlice = createSlice({
     name: 'receipt',
     initialState,
-    reducers:{
+    reducers: {
 
     },
-    extraReducers: (builder)=>{
-        //GET BUILDS PRODUCT
+    extraReducers: (builder) => {
+        //GET BUILDS RECEIPT
         builder.addCase(getAllReceipts.pending, (state, action) => {
             state.status = posibleStatus.PENDING
         })
@@ -46,7 +47,18 @@ const receiptSlice = createSlice({
             state.error = "Something went wrong while fetching"
             state.receipts = []
         })
-
+        //POST BUILDERS RECEIPT
+        builder.addCase(addReceipt.pending, (state, action) => {
+            state.status = posibleStatus.PENDING
+        })
+        builder.addCase(addReceipt.fulfilled, (state, action) => {
+            state.status = posibleStatus.COMPLETED
+            state.receipts.push(action.payload)
+        })
+        builder.addCase(addReceipt.rejected, (state, action) => {
+            state.status = posibleStatus.FAILED
+            state.error = "Something went wrong while fetching"
+        })
     }
 })
 

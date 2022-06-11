@@ -37,31 +37,31 @@ const providerSlice = createSlice({
     reducers: {
 
     },
-    extraReducers:(builder)=>{
+    extraReducers: (builder) => {
         //-----------GET BUILDERS
-        builder.addCase(getAllProviders.pending, (state, action)=>{
+        builder.addCase(getAllProviders.pending, (state, action) => {
             state.status = posibleStatus.PENDING
         })
-        builder.addCase(getAllProviders.fulfilled, (state, action)=>{
+        builder.addCase(getAllProviders.fulfilled, (state, action) => {
             state.status = posibleStatus.COMPLETED
             state.providers = action.payload
         })
-        builder.addCase(getAllProviders.rejected, (state, action)=>{
+        builder.addCase(getAllProviders.rejected, (state, action) => {
             state.status = posibleStatus.FAILED
             state.error = "Something went wrong while fetching"
-            state.providers =[]
+            state.providers = []
         })
-        //-----------POST BUILDERS. Missing this to work in the frontend
-        builder.addCase(createProvider.pending, (state, action)=>{
+        //-----------POST BUILDERS
+        builder.addCase(createProvider.pending, (state, action) => {
             state.status = posibleStatus.PENDING
         })
-        builder.addCase(createProvider.fulfilled, (state, action)=>{
+        builder.addCase(createProvider.fulfilled, (state, action) => {
             state.status = posibleStatus.COMPLETED
             state.providers.push(action.payload)
         })
-        builder.addCase(createProvider.rejected, (state, action)=>{
+        builder.addCase(createProvider.rejected, (state, action) => {
             state.status = posibleStatus.FAILED
-            state.error = "Something went wrong while fetching"            
+            state.error = "Something went wrong while fetching"
         })
     }
 })

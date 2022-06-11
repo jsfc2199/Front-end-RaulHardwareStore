@@ -13,12 +13,12 @@ const ProviderForm: React.FunctionComponent<IProviderFormProps> = (props) => {
     const [passport, setPassport] = useState('')
 
     const dispatch = useAppDispatch()
-    
-    const onAdd = async (e:React.FormEvent<HTMLFormElement>)=>{
+
+    const onAdd = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        
-        if(name && number && passport){
-            const newProvider: providerType = {id: nanoid(), name, number, passport}
+
+        if (name && number && passport) {
+            const newProvider: providerType = { id: nanoid(), name, number, passport }
             dispatch(createProvider(newProvider))
             setName('')
             setNumber('')

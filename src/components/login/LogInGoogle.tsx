@@ -5,7 +5,7 @@ import { logInInReducer } from '../../state/slice/loggedInSlice'
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import {RootState} from '../../store'
+import { RootState } from '../../store'
 
 const providerGoogleAuth = new GoogleAuthProvider();
 
@@ -13,14 +13,14 @@ const GoogleLogIn: React.FunctionComponent = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const {user} = useSelector((state:RootState) => state.logged)
-  
+    const { user } = useSelector((state: RootState) => state.logged)
 
-    useEffect(()=>{
-        if(user!==null){
+
+    useEffect(() => {
+        if (user !== null) {
             navigate("/providers")
         }
-    },[])
+    }, [])
 
     const signInWithGoogleButton = () => {
         signInWithPopup(auth, providerGoogleAuth)
@@ -36,9 +36,9 @@ const GoogleLogIn: React.FunctionComponent = () => {
             }).catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-          
+
                 const email = error.email;
-             
+
                 const credential = GoogleAuthProvider.credentialFromError(error);
             })
     }

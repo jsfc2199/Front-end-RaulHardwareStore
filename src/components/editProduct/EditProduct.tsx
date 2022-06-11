@@ -52,9 +52,9 @@ const EditProduct: React.FunctionComponent = () => {
                 price: newPrice,
                 provider: provider
             }
-            
+
             dispatch(updateProduct(productUpdated))
-            
+
             navigate("/products")
 
         } else {

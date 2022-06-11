@@ -4,7 +4,7 @@ import * as moment from 'moment'
 
 const getProviderUrl = 'http://localhost:8080/v1/api/all-providers'
 
-export const getAllProviders = createAsyncThunk('getAllProviders',async () => {
-    const response = await fetch(getProviderUrl)      
+export const getAllProviders = createAsyncThunk('getAllProviders', async () => {
+    const response = await fetch(getProviderUrl)
     return (await response.json() as providerType[])
 })

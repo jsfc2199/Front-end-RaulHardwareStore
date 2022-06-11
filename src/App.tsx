@@ -8,6 +8,7 @@ import Logout from "./components/login/Logout";
 import SignIn from './components/login/SignIn';
 import ProductList from './components/products/ProductList'
 import ProviderList from './components/provider/ProviderList'
+import PurchaseProduct from "./components/receipt/PurchaseProduct";
 import ReceiptList from "./components/receipt/ReceiptList";
 import { RootState } from './store';
 
@@ -20,17 +21,17 @@ function App() {
       <h1>Raul's Hardware Store</h1>
       <BrowserRouter>
         {user !== null ?
-          <nav className='navMenu'>            
+          <nav className='navMenu'>
             <Link to='/providers'> Providers </Link>
-            <Link to='/products'> Products </Link> 
+            <Link to='/products'> Products </Link>
             <Link to='/receipts'> Receipts </Link>
             <Link to="/LogOut" >Log Out</Link>
-          </nav> : 
-          
+          </nav> :
+
           <nav className='navMenu'>
             <Link to="/logInGoogle">Log in with google</Link>
             <Link to="/logIn">Log in</Link>
-            <Link to="/SignIn">Sign in</Link>            
+            <Link to="/SignIn">Sign in</Link>
           </nav>}
 
         <Routes>
@@ -42,6 +43,7 @@ function App() {
           <Route path="/LogOut" element={<Logout />} />
           <Route path="/updateProduct" element={<EditProduct />} />
           <Route path="/receipts" element={<ReceiptList />} />
+          <Route path="/purchaseProduct" element={<PurchaseProduct />} />
         </Routes>
       </BrowserRouter>
 

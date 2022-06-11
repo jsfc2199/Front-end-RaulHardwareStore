@@ -8,12 +8,12 @@ import Product from './Product';
 import ProductForm from './ProductForm';
 import { providerType } from '../../state/slice/providerSlice'
 import { useNavigate } from "react-router-dom";
-import {RootState} from '../../store'
+import { RootState } from '../../store'
 
 interface IProductListProps {
-}  
+}
 
-const ProductList: React.FunctionComponent<IProductListProps> = ({}) => {
+const ProductList: React.FunctionComponent<IProductListProps> = ({ }) => {
 
     const dispatch = useAppDispatch()
 
@@ -27,18 +27,18 @@ const ProductList: React.FunctionComponent<IProductListProps> = ({}) => {
     const status = useSelector(selectProductsStatus())
     const getProducts = useSelector(selectProductsState())
 
-    const {user} = useSelector((state:RootState) => state.logged)
+    const { user } = useSelector((state: RootState) => state.logged)
     const navigate = useNavigate()
 
-    useEffect(()=>{
-        if(user===null){
+    useEffect(() => {
+        if (user === null) {
             navigate("/logInGoogle")
         }
-    },[])
+    }, [])
 
     return (
         <div>
-            <ProductForm/>
+            <ProductForm />
             <table className="justTable">
                 <thead>
                     <tr className="justTableHead">
@@ -47,15 +47,16 @@ const ProductList: React.FunctionComponent<IProductListProps> = ({}) => {
                         <td>Units Available</td>
                         <td>Price</td>
                         <td>Min Amount Units Available</td>
-                        <td>Max Amount Units Available</td>  
-                        <td>Provider's Name</td>  
-                        <td>Delete</td>  
+                        <td>Max Amount Units Available</td>
+                        <td>Provider's Name</td>
+                        <td>Delete</td>
                         <td>Edit</td>
+                        <td>Purchase</td>
                     </tr>
                 </thead>
 
                 {!error && getProducts.map((product) => <Product key={product.id} props={product} />)}
-                
+
 
             </table>
         </div>
