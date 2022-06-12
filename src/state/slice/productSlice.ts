@@ -18,6 +18,11 @@ type productType = {
     provider: providerType
 }
 
+type shopCartType = {
+    amount: number,
+    product: productType
+}
+
 interface initialStateProductType {
     products: productType[],
     status: posibleStatus,
@@ -96,6 +101,7 @@ const productSlice = createSlice({
 
 export type { productType }
 export type { initialStateProductType }
+export type { shopCartType }
 export default productSlice.reducer
 
 //extraReducers

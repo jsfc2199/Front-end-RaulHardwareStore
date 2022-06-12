@@ -4,12 +4,13 @@ import { posibleStatus } from './providerSlice'
 
 import { getAllBills } from '../../actions/bill/getAllBills'
 import { productType } from "./productSlice";
+import { addBill } from "../../actions/bill/addBill";
 
 
 type billType = {
     id: string,
     clientName: string,
-    seller: number,
+    seller: string,
     date: string,
     productsBought: productType[],
     totalPaid: number,
@@ -34,7 +35,7 @@ const billSlice = createSlice({
 
     },
     extraReducers: (builder) => {
-        //GET BUILDS RECEIPT
+        //GET BUILDS BILLS
         builder.addCase(getAllBills.pending, (state, action) => {
             state.status = posibleStatus.PENDING
         })
@@ -46,6 +47,18 @@ const billSlice = createSlice({
             state.status = posibleStatus.FAILED
             state.error = "Something went wrong while fetching"
             state.bills = []
+        })
+        // POST BUILDS BILLS
+        builder.addCase(addBill.pending, (state, action) => {
+            state.status = posibleStatus.PENDING
+        })
+        builder.addCase(addBill.fulfilled, (state, action) => {
+            state.status = posibleStatus.COMPLETED
+            state.bills.push(action.payload)
+        })
+        builder.addCase(addBill.rejected, (state, action) => {
+            state.status = posibleStatus.FAILED
+            state.error = "Something went wrong while fetching"
         })
     }
 })
