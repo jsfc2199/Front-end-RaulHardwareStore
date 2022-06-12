@@ -8,6 +8,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import moment from 'moment';
 import { addBill } from '../../actions/bill/addBill';
 import { clearShoppingCart } from '../../state/slice/shoppingSlice';
+import { useNavigate } from 'react-router-dom';
 
 interface IShoppingCarProps {
 }
@@ -24,11 +25,11 @@ const ShoppingCar: React.FunctionComponent<IShoppingCarProps> = (props) => {
   const [clientName, setClientName] = useState('')
   const [sellertName, setSellerName] = useState('')
 
-
+  const navigate = useNavigate()
 
   const onBuy = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (clientName && sellertName ) {
+    if (clientName && sellertName) {
 
       let dateImpro = moment(new Date()).format("DD/MM/YYYY HH:mm:ss")
       const billToAdd: billType = {
@@ -36,24 +37,36 @@ const ShoppingCar: React.FunctionComponent<IShoppingCarProps> = (props) => {
         clientName: clientName,
         seller: sellertName,
         date: dateImpro,
-        productsBought: productsCart.map(product =>product.product),
+        productsBought: productsCart.map(product => product.product),
         totalPaid: productsCart.reduce((aum, product) => product.product.price + aum, 0),
       }
-      dispatch(addBill(billToAdd))      
+
+      productsCart.forEach(shopProduct => {
+        const product = shopProduct.product
+
+        let productUpdated: productType = {
+          ...product,
+          unitsAvailable: product.unitsAvailable - shopProduct.amount
+        }
+        if (productUpdated.unitsAvailable > 0) {
+          if (productUpdated.unitsAvailable < productUpdated.minUnits) {
+            alert("You need to buy supplies because the product has less units available than the minimum units available")
+          }
+          dispatch(updateProduct(productUpdated))
+          dispatch(addBill(billToAdd))
+          dispatch(clearShoppingCart())
+          navigate('/bills')
+        }
+        else {
+          alert("You can't sell " + productUpdated.productName + " because you don't have enought products of them")
+          dispatch(clearShoppingCart())
+          navigate('/products')
+        }
+      })
+    }else{
+      alert("Please enter the client name and seller name")
     }
-
-    productsCart.forEach(shopProduct => {
-      const product = shopProduct.product
-
-      let productUpdated: productType = {
-        ...product,
-        unitsAvailable: product.unitsAvailable - shopProduct.amount
-      }      
-      dispatch(updateProduct(productUpdated))      
-    })    
-    dispatch(clearShoppingCart())
   }
-
 
   return (
     <div>
