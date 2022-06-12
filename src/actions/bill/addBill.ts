@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { billType } from "../../state/slice/billSlice";
 
-const saveBillUrl = 'http://localhost:8080/v1/api/save-bill'
+const saveBillUrl = 'https://raul-hardware-store-jsfc.herokuapp.com/v1/api/save-bill'
 
 export const addBill = createAsyncThunk('addBill', async (product: billType) => {
     const response = await fetch(saveBillUrl, {

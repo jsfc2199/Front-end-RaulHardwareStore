@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { productType } from '../../state/slice/productSlice'
 
-const getProductUrl = 'http://localhost:8080/v1/api/update-product'
+const getProductUrl = 'https://raul-hardware-store-jsfc.herokuapp.com/v1/api/update-product'
 
 export const updateProduct = createAsyncThunk('updateProduct', async (product: productType) => {
     const response = await fetch(getProductUrl, {

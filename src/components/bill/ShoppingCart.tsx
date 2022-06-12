@@ -53,7 +53,7 @@ const ShoppingCar: React.FunctionComponent<IShoppingCarProps> = (props) => {
             alert("You need to buy supplies because the product has less units available than the minimum units available")
           }
           dispatch(updateProduct(productUpdated))
-          dispatch(addBill(billToAdd))
+          
           dispatch(clearShoppingCart())
           navigate('/bills')
         }
@@ -63,6 +63,7 @@ const ShoppingCar: React.FunctionComponent<IShoppingCarProps> = (props) => {
           navigate('/products')
         }
       })
+      dispatch(addBill(billToAdd))
     }else{
       alert("Please enter the client name and seller name")
     }
