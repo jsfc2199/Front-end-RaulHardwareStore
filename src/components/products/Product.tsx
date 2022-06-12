@@ -32,7 +32,7 @@ const Product: React.FunctionComponent<productPropsType> = ({ props }) => {
                 <td>{props.price}</td>
                 <td>{props.minUnits}</td>
                 <td>{props.maxUnits}</td>
-                <td>{props.provider.name}</td>
+                <td> {props.provider.name}</td>
                 <td><button className="btn btn-delete" onClick={() => onDelete(props)}>
                     <span className="mdi mdi-delete mdi-24px"></span>
                     <span className="mdi mdi-delete-empty mdi-24px"></span>

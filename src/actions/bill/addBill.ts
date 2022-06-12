@@ -3,7 +3,7 @@ import { billType } from "../../state/slice/billSlice";
 
 const saveBillUrl = 'http://localhost:8080/v1/api/save-bill'
 
-export const addBill = createAsyncThunk('createPrpduct', async (product: billType) => {
+export const addBill = createAsyncThunk('addBill', async (product: billType) => {
     const response = await fetch(saveBillUrl, {
         method: 'POST',
         headers: {

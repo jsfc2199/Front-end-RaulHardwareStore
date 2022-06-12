@@ -28,9 +28,9 @@ const ShoppingCar: React.FunctionComponent<IShoppingCarProps> = (props) => {
 
   const onBuy = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (clientName && sellertName) {
+    if (clientName && sellertName ) {
 
-      /*let dateImpro = moment(new Date()).format("DD/MM/YYYY HH:mm:ss")
+      let dateImpro = moment(new Date()).format("DD/MM/YYYY HH:mm:ss")
       const billToAdd: billType = {
         id: nanoid(),
         clientName: clientName,
@@ -39,27 +39,19 @@ const ShoppingCar: React.FunctionComponent<IShoppingCarProps> = (props) => {
         productsBought: productsCart.map(product =>product.product),
         totalPaid: productsCart.reduce((aum, product) => product.product.price + aum, 0),
       }
-      dispatch(addBill(billToAdd))*/
-
-
-      productsCart.forEach(shopProduct => {
-        const product = shopProduct.product
-
-        let productUpdated: productType = {
-          id: product.id,
-          minUnits: product.minUnits,
-          maxUnits: product.maxUnits,
-          productName: product.productName,
-          description: product.description,
-          unitsAvailable: product.unitsAvailable - shopProduct.amount,
-          price: product.price,
-          provider: product.provider,
-        }
-
-        dispatch(updateProduct(productUpdated))
-      })
-      dispatch(clearShoppingCart())
+      dispatch(addBill(billToAdd))      
     }
+
+    productsCart.forEach(shopProduct => {
+      const product = shopProduct.product
+
+      let productUpdated: productType = {
+        ...product,
+        unitsAvailable: product.unitsAvailable - shopProduct.amount
+      }      
+      dispatch(updateProduct(productUpdated))      
+    })    
+    dispatch(clearShoppingCart())
   }
 
 

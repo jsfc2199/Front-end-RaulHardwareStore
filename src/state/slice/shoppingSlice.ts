@@ -15,21 +15,19 @@ const shoppingSlice = createSlice({
     initialState,
     reducers: {
         addToCart(state, action){
-            const productToCart = state.productsCart.find(product => product.product.id===action.payload.id)
+            const existingProduct = state.productsCart.find(actualProduct => actualProduct.product.id === action.payload.id)
 
-            if(productToCart){
-                const productToUpdate = {amount: (productToCart.amount), product: productToCart.product}
-
-                //allows to remove the existing product in order to push the update one
-                state.productsCart = state.productsCart.filter(product => product.product.id!==productToCart.product.id)
-                state.productsCart.push(productToUpdate)
+            if (existingProduct){
+                const updatedProduct = { amount: (existingProduct.amount + 1), product: existingProduct.product } 
+                state.productsCart = state.productsCart.filter(p => p.product.id !== existingProduct.product.id)   
+                state.productsCart.push(updatedProduct)
             }else{
                 const newProduct = {
                     amount: 1,
                     product: action.payload
-                }
+                }    
                 state.productsCart.push(newProduct)
-            }           
+            }
         },
         clearShoppingCart(state){
             state.productsCart = []

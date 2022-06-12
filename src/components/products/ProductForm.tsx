@@ -72,22 +72,22 @@ const ProductForm: React.FunctionComponent<IProductFormProps> = (props) => {
 
         <div className='form-control'>
           <label>Units Available</label>
-          <input onChange={(e) => setUnitsAvailable(Number(e.target.value))} type='number' placeholder='Units available' value={unitsAvailable} />
+          <input onChange={(e) => setUnitsAvailable(Number(e.target.value))} type='number' placeholder='Units available' value={unitsAvailable} min='0'/>
         </div>
 
         <div className='form-control'>
           <label>Product Price</label>
-          <input onChange={(e) => setPrice(Number(e.target.value))} type='number' placeholder='Units available' value={price} />
+          <input onChange={(e) => setPrice(Number(e.target.value))} type='number' placeholder='Units available' value={price} min='0'/>
         </div>
 
         <div className='form-control'>
           <label>Min Amount Units Available</label>
-          <input onChange={(e) => setMinUnitsAvailable(Number(e.target.value))} type='number' placeholder='Units available' value={minUnitsAvailable} />
+          <input onChange={(e) => setMinUnitsAvailable(Number(e.target.value))} type='number' placeholder='Units available' value={minUnitsAvailable} min='0'/>
         </div>
 
         <div className='form-control'>
           <label>Max Amount Units Available</label>
-          <input onChange={(e) => setMaxUnitsAvailable(Number(e.target.value))} type='number' placeholder='Units available' value={maxUnitsAvailable} />
+          <input onChange={(e) => setMaxUnitsAvailable(Number(e.target.value))} type='number' placeholder='Units available' value={maxUnitsAvailable} min='0'/>
         </div>
 
         <div className='form-control'>

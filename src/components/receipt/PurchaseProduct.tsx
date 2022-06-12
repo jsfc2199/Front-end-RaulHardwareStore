@@ -27,8 +27,7 @@ const PurchaseProduct: React.FunctionComponent<IPurchaseProductProps> = (props) 
     const location = useLocation()
     const state = location.state as stateBecausePurchased
     const { statePurchased } = state
-
-    //estado que necesito para validar otras cosas
+    
     const productSelectToPurchase = getProductos.find((product) => product.id === statePurchased) as productType
 
     //states to create the cereipt
